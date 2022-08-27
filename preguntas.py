@@ -28,7 +28,6 @@ def pregunta_01():
     x=0
     for i in range(0,len(df)):
         x+=int(df[i][1])
-
     return x
 
 
