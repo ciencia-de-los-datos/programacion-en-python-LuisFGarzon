@@ -21,7 +21,15 @@ def pregunta_01():
     214
 
     """
-    return 214
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.split(";") for line in df]
+    x=0
+    for i in range(0,len(df)):
+        x+=int(df[i][1])
+
+    return x
 
 
 def pregunta_02():
@@ -39,7 +47,19 @@ def pregunta_02():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.split(";") for line in df]
+    y=[]
+    a=[]
+    for j in range(0,len(df)):
+        y.append(df[j][0])
+    for i in y:
+        a.append((i,y.count(i)))
+    a=list(set(a))
+    a.sort()
+    return a
 
 
 def pregunta_03():
@@ -57,7 +77,22 @@ def pregunta_03():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][0:2])
+    dicc={}
+    for key,value in a:
+        if key in dicc:
+            dicc[key]+=int(value)
+        else:
+            dicc[key]=int(value)
+    respuesta=[(key,dicc[key]) for key in dicc]
+    respuesta.sort()
+    return respuesta
 
 
 def pregunta_04():
@@ -82,7 +117,25 @@ def pregunta_04():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][2])
+    lista=[]
+    for line in a:
+        lista.append(line.split("-")[1])
+    tempo={}
+    for key in lista:
+        if key in tempo:
+            tempo[key]+=1
+        else:
+            tempo[key]=1
+    respuesta=[(key,tempo[key]) for key in tempo]
+    respuesta.sort()
+    return  respuesta
 
 
 def pregunta_05():
@@ -100,7 +153,24 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][0:2])
+    minn=dict()
+    for key,value in a:
+        if key in minn:
+            minn[key].append(value)
+        else:
+            minn[key] = [value]
+    answ=[]
+    for p in minn:
+        answ.append( (p,int(max(minn[p])),int(min(minn[p]))))
+    answ=sorted(answ)
+    return answ
 
 
 def pregunta_06():
@@ -125,7 +195,30 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][4])
+    a=[p.split(",") for p in a]
+    df2=[]
+    for p in a:
+        for j in p:
+            df2.append(j.split(":"))
+    dicc2={}
+    for key,value in df2:
+        if key in dicc2:
+            dicc2[key].append(int(value))
+        else:
+            dicc2[key] = [int(value)]
+    resp=[]
+    for p in dicc2:
+        resp.append( (p,int(min(dicc2[p])),int(max(dicc2[p]))))
+    resp=sorted(resp)
+    return resp
 
 
 def pregunta_07():
@@ -149,7 +242,23 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append([int(df[j][1]),df[j][0]])
+    dicc2={}
+    for key,value in a:
+        if key in dicc2:
+            dicc2[key].append(value)
+        else:
+            dicc2[key] = [value]
+    respuesta=[(key,dicc2[key]) for key in dicc2]
+    respuesta.sort()
+    return respuesta
 
 
 def pregunta_08():
@@ -174,7 +283,23 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append([int(df[j][1]),df[j][0]])
+    dicc2={}
+    for key,value in a:
+        if key in dicc2:
+            dicc2[key].append(value)
+        else:
+            dicc2[key] = [value]
+    respuesta=[(key,sorted(list(set(dicc2[key])))) for key in dicc2]
+    respuesta.sort()
+    return respuesta
 
 
 def pregunta_09():
@@ -197,7 +322,27 @@ def pregunta_09():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][4])
+    a=[p.split(",") for p in a]
+    df2=[]
+    for p in a:
+        for j in p:
+            df2.append(j.split(":")[0])
+    df2.sort()
+    tempo={}
+    for key in df2:
+        if key in tempo:
+            tempo[key]+=1
+        else:
+            tempo[key]=1
+    return tempo
 
 
 def pregunta_10():
@@ -218,7 +363,23 @@ def pregunta_10():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append(df[j][4])
+    a=[p.split(",") for p in a]
+    b=[]
+    for j in range(0,len(df)):
+        b.append(df[j][3])
+    b=[p.split(",") for p in b]
+    df3=[]
+    for x in range(0,len(a)):
+        df3.append((df[x][0],len(b[x]),len(a[x])))
+    return df3
 
 
 def pregunta_11():
@@ -239,7 +400,26 @@ def pregunta_11():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    for j in range(0,len(df)):
+        a.append([df[j][1],df[j][3].split(",")])
+    df2=[]
+    for j in a:
+        for i in j[1]:
+            df2.append([i,j[0]])
+    df2.sort()
+    dicc={}
+    for key,value in df2:
+        if key in dicc:
+            dicc[key]+=int(value)
+        else:
+            dicc[key]=int(value)
+    return dicc
 
 
 def pregunta_12():
@@ -257,4 +437,22 @@ def pregunta_12():
     }
 
     """
-    return
+    with open("data.csv", "r") as file:
+        df = file.readlines()
+    df = [line.replace("\t", ";") for line in df]
+    df = [line.replace("\n", "") for line in df]
+    df = [line.split(";") for line in df]
+    a=[]
+    b=[]
+    for j in range(0,len(df)):
+        a.append(df[j][4].split(","))
+        for i in range(0,len(a[j])):
+            b.append([df[j][0],a[j][i].split(":")[1]])
+    b.sort()
+    dicc={}
+    for key,value in b:
+        if key in dicc:
+            dicc[key]+=int(value)
+        else:
+            dicc[key]=int(value)
+    return dicc
